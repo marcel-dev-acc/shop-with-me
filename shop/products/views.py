@@ -60,3 +60,19 @@ class AllProducts(View):
 
         return render(request, 'products/products.html', context)
 
+
+class ProductDetail(View):
+    """
+    A view to show individual product details
+    """
+
+    def get(self, request, product_id):
+        """Handle GET requests for AllProducts"""
+
+        product = get_object_or_404(Product, pk=product_id)
+
+        context = {
+            'product': product,
+        }
+
+        return render(request, 'products/product_detail.html', context)
