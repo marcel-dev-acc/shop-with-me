@@ -21,5 +21,6 @@ from .settings import STATIC_ROOT
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
+    path('', include('home.urls')),
     re_path(r'^static/(?P<path>.*)$', serve,{'document_root': STATIC_ROOT}), 
 ]
