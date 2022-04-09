@@ -1,17 +1,21 @@
-from re import L
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
-from django.views.generic import TemplateView
 from django.views import View
-
 from products.models import Product
 
 # Create your views here.
 
-class ViewBag(TemplateView):
-    """ A view that renders the bag contents page """
+class ViewBag(View):
+    """
+    A view that renders the bag contents page
+    """
 
-    template_name = "bag/bag.html"
+    def get(self, request):
+        """
+        Handle get requests to viewing hte bag
+        """
+        
+        return render(request, "bag/bag.html")
 
 
 class AddToBag(View):
