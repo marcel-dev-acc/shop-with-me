@@ -96,6 +96,7 @@ AUTHENTICATION_BACKENDS = [
 
 WSGI_APPLICATION = "shop.wsgi.application"
 
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
