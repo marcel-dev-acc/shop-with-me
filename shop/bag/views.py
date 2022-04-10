@@ -60,3 +60,41 @@ class AddToBag(View):
 
         request.session['bag'] = bag
         return redirect(redirect_url)
+
+
+class AdjustBag(View):
+    """
+    Adjust the quantity of the specified product to the specified amount
+    """
+
+    def post(self, request, item_id):
+        """
+        Handle post requests to Adjust Bag
+        """
+
+        product = get_object_or_404(Product, pk=item_id)
+        quantity = int(request.POST.get('quantity'))
+        size = None
+        if 'product_size' in request.POST:
+            size = request.POST['product_size']
+        bag = request.session.get('bag', {})
+
+        if size:
+            if quantity > 0:
+                bag[item_id]['items_by_size'][size] = quantity
+                messages.success(request, f'Updated size {size.upper()} {product.name} quantity to {bag[item_id]["items_by_size"][size]}')
+            else:
+                del bag[item_id]['items_by_size'][size]
+                if not bag[item_id]['items_by_size']:
+                    bag.pop(item_id)
+                messages.success(request, f'Removed size {size.upper()} {product.name} from your bag')
+        else:
+            if quantity > 0:
+                bag[item_id] = quantity
+                messages.success(request, f'Updated {product.name} quantity to {bag[item_id]}')
+            else:
+                bag.pop(item_id)
+                messages.success(request, f'Removed {product.name} from your bag')
+
+        request.session['bag'] = bag
+        return redirect(reverse('view_bag'))
