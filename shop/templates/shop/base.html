@@ -3,6 +3,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon-shopping-bag.png' %}">
     {% block meta %}
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Required meta tags -->
@@ -36,7 +37,6 @@
     <title>My Shop {% block extra_title %}{% endblock %}</title>
   </head>
   <body>
-    
     <header class="container-fluid fixed-top">
       <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
         <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
@@ -112,11 +112,7 @@
         <div class="col bg-black text-white">
           <h4 class="logo-font my-1">
             Free delivery on orders over £
-            {% if free_delivery_threshold %}
-              {{ free_delivery_threshold }}
-            {% else %}
-              79.95
-            {% endif %}
+            {{ free_delivery_threshold }}
           </h4>                
         </div>            
       </div>
