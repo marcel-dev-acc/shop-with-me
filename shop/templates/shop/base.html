@@ -149,6 +149,10 @@
     {% block postload_js %}
       <script type="text/javascript">
         $('.toast').show();
+
+        $('.btn-close').click(function() {
+          $('.toast').hide();
+        });
       </script>
     {% endblock %}
 
